@@ -134,6 +134,7 @@ class Ninja_Forms {
         if ( is_admin() ) {
             self::$instance->step_processing = new NF_Step_Processing();
             self::$instance->download_all_subs = new NF_Download_All_Subs();
+            self::$instance->delete_all_subs = new NF_Delete_All_Subs();
         }
 
         // Fire our Ninja Forms init action.
@@ -420,6 +421,7 @@ class Ninja_Forms {
 
             // Include our download all submissions php files
             require_once( NF_PLUGIN_DIR . 'classes/download-all-subs.php' );
+            require_once( NF_PLUGIN_DIR . 'classes/delete-all-subs.php' );
 
             // Include Upgrade Base Class
             require_once( NF_PLUGIN_DIR . 'includes/admin/upgrades/class-upgrade.php');

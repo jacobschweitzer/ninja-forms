@@ -708,6 +708,14 @@ class NF_Subs_CPT {
 						var button = '<a href="<?php echo $url; ?>" class="button-secondary nf-download-all"><?php echo __( 'Download All Submissions', 'ninja-forms' ); ?></a>';
 						jQuery( '#doaction2' ).after( button );
 						<?php
+
+						$redirect = urlencode( remove_query_arg( array( 'delete_all' ) ) );
+						$url = admin_url( 'admin.php?page=nf-processing&action=delete_all_subs&form_id=' . absint( $_REQUEST['form_id'] ) . '&redirect=' . $redirect );
+						$url = esc_url( $url );
+						?>
+						var button = '<a href="<?php echo $url; ?>" class="button-secondary nf-delete-all"><?php echo __( 'Delete All Submissions', 'ninja-forms' ); ?></a>';
+						jQuery( '#wpbody-content' ).append( button );
+						<?php
 					}
 					
 					if ( isset ( $_REQUEST['download_all'] ) && $_REQUEST['download_all'] != '' ) {
@@ -718,6 +726,13 @@ class NF_Subs_CPT {
 						<?php
 					}
 
+					if ( isset ( $_REQUEST['delete_all'] ) && $_REQUEST['delete_all'] != '' ) {
+						$redirect = esc_url_raw( add_query_arg( array( 'download_file' => esc_html( $_REQUEST['delete_all'] ) ) ) );
+						$redirect = remove_query_arg( array( 'delete_all' ), $redirect );
+						?>
+						document.location.href = "<?php echo $redirect; ?>";
+						<?php
+					}
 					?>
 				});
 			</script>
