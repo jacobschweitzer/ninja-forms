@@ -714,7 +714,7 @@ class NF_Subs_CPT {
 						$url = esc_url( $url );
 						?>
 						var button = '<a href="<?php echo $url; ?>" class="button-secondary nf-delete-all"><?php echo __( 'Delete All Submissions', 'ninja-forms' ); ?></a>';
-						jQuery( '#wpbody-content' ).append( button );
+						jQuery( '#wpbody-content div.bulkactions' ).append( button );
 						<?php
 					}
 					
@@ -727,8 +727,7 @@ class NF_Subs_CPT {
 					}
 
 					if ( isset ( $_REQUEST['delete_all'] ) && $_REQUEST['delete_all'] != '' ) {
-						$redirect = esc_url_raw( add_query_arg( array( 'download_file' => esc_html( $_REQUEST['delete_all'] ) ) ) );
-						$redirect = remove_query_arg( array( 'delete_all' ), $redirect );
+						$redirect = esc_url_raw();
 						?>
 						document.location.href = "<?php echo $redirect; ?>";
 						<?php
